@@ -1,7 +1,7 @@
+
 import './globals.css'
 
 import toast, { Toaster } from 'react-hot-toast';
-
 
 export const metadata = {
   title: 'Create Next App',
@@ -9,9 +9,15 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+
   return (
+
     <html lang="en">
-      <body >{children}<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" type="text/css" />
+      <body>
+
+        {children}
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" type="text/css" />
         <div><Toaster /></div>
       </body>
     </html>

@@ -1,18 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 import { PropagateLoader } from "react-spinners";
-
 import { ToastError, ToastSuccess } from "../components/toasters/taoster";
 import { CheckPassword, ValidateEmail } from "@/helpers/validation/validator";
 
 const Page = () => {
+
     useEffect(() => {
         setTimeout(() => {
             document.querySelector('#container').classList.remove('right-panel-active')
+
         }, 50)
+
     }, []);
 
     const router = useRouter();
@@ -29,6 +31,8 @@ const Page = () => {
             setButtonDisabled(true);
         }
     }, [user]);
+
+
 
     const onSubmit = async (e) => {
 
@@ -81,6 +85,8 @@ const Page = () => {
 
 
 
+
+
     return (
 
         <>
@@ -98,8 +104,11 @@ const Page = () => {
                         <h1 className="text-3xl">Sign in</h1>
                         <div className="social-container">
                             <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
-                            <a href="#" className="social"><i className="fab fa-google-plus-g" /></a>
+
+                            <a href="#" className="social" ><i className="fab fa-google-plus-g" /></a>
+
                             <a href="#" className="social"><i className="fab fa-linkedin-in" /></a>
+
                         </div>
                         <span>or use your account</span>
                         <input type="email" placeholder="Email" value={user.email} onChange={(e) => {
