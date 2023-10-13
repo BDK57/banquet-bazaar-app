@@ -1,4 +1,5 @@
 
+import Authprovider from './components/Provider';
 import './globals.css'
 
 import toast, { Toaster } from 'react-hot-toast';
@@ -14,8 +15,10 @@ export default function RootLayout({ children }) {
 
     <html lang="en">
       <body>
-
+        <Authprovider>
         {children}
+        </Authprovider>
+       
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" type="text/css" />
         <div><Toaster /></div>

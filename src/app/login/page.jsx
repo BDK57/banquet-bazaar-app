@@ -6,7 +6,8 @@ import axios from "axios";
 import { PropagateLoader } from "react-spinners";
 import { ToastError, ToastSuccess } from "../components/toasters/taoster";
 import { CheckPassword, ValidateEmail } from "@/helpers/validation/validator";
-
+import { useSession , signIn } from "next-auth/react";
+import { data } from "autoprefixer";
 const Page = () => {
 
     useEffect(() => {
@@ -16,6 +17,17 @@ const Page = () => {
         }, 50)
 
     }, []);
+
+    const { data: session, status } = useSession()
+ 
+    useEffect(()=>{
+       if(status == 'authenticated'){
+        console.log("status",status)
+        pop();
+       }
+       console.log("session",session)
+    },[data])
+
 
     const router = useRouter();
     const [user, setUser] = useState({
@@ -105,7 +117,7 @@ const Page = () => {
                         <div className="social-container">
                             <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
 
-                            <a href="#" className="social" ><i className="fab fa-google-plus-g" /></a>
+                            <a href="#" onClick={()=>signIn("google",{callbackUrl:'/profile'})} className="social" ><i className="fab fa-google-plus-g" /></a>
 
                             <a href="#" className="social"><i className="fab fa-linkedin-in" /></a>
 

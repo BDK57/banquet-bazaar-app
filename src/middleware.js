@@ -8,8 +8,10 @@ export function middleware(request) {
     const path = request.nextUrl.pathname;
     console.log("path" + path)
     const isPublicPath = path === "/login" || path === "/signup";
-    const token = request.cookies.get("token")?.value || ""; // check if the token exists
-    if (isPublicPath && token.length > 0) {
+    const token = request.cookies.get("token")?.value || "";
+    const nextauth = request.cookies.get("next-auth.session-token")?.value || "";
+     // check if the token exists
+    if (isPublicPath && token.length > 0 || nextauth.length > 0) {
         // redirect them to their profile page
         return NextResponse.redirect(new URL("/profile", request.nextUrl));
     }
