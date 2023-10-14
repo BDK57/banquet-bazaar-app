@@ -27,8 +27,7 @@ export async function POST(request) {
                 { status: 401 },
             );
         }
-        // after we verified the user is valid, we can create a JWT token and return it to the user cookies
-        // first create token data
+        
         const tokenData = {
             id: user._id,
             username: user.username,
@@ -37,12 +36,10 @@ export async function POST(request) {
         const token = await jwt.sign(tokenData, process.env.JWT_TOKEN_SECRET, {
             expiresIn: "1d",
         });
-        // create a next response
         const response = NextResponse.json({
             message: "Logged in successfully",
             success: true,
         });
-        // set this token in the user cookies
         response.cookies.set("token", token, { httpOnly: true });
         return response;
     } catch (error) {

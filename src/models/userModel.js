@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please enter your username"],
         unique: true
     },
+    isSocialUser:{
+        type:Boolean,
+        default:false
+    },
     email: {
         type: String,
         required: true,
@@ -21,6 +25,7 @@ const userSchema = new mongoose.Schema({
     isAdmin: {
         type: Boolean, default: false
     },
+    
     verifyToken: String,
     verifyTokenExpiry: Date
 })
