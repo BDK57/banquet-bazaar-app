@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 import { PropagateLoader } from "react-spinners";
+
+import { BeatLoader, BounceLoader, BarLoader,RingLoader } from "react-spinners";
 import { ToastError, ToastSuccess } from "../components/toasters/taoster";
 import { CheckPassword, ValidateEmail } from "@/helpers/validation/validator";
 import { useSession, signIn } from "next-auth/react";
@@ -140,11 +142,8 @@ const Page = () => {
                         <h1 className="text-3xl">Sign in</h1>
                         <div className="social-container">
                             <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
-
                             <a href="#" onClick={GoogleSignin} className="social" ><i className="fab fa-google-plus-g" /></a>
-
                             <a href="#" className="social"><i className="fab fa-linkedin-in" /></a>
-
                         </div>
                         <span>or use your account</span>
                         <input type="email" placeholder="Email" value={user.email} onChange={(e) => {
@@ -154,8 +153,10 @@ const Page = () => {
                             setUser({ ...user, password: e.target.value })
                         }} />
                         <a href="#">Forgot your password?</a>
-                        <button className="custom-btn btn-15" onClick={onSubmit}>Sign in</button>
-                    </form>
+                        <button className="custom-btn btn-15 h-10" onClick={onSubmit}
+                            disabled={false}>
+
+                            {loading ? <BeatLoader size={5} className={""} color={"white"} />: "Sign In"}</button> </form>
                 </div>
                 <div className="overlay-container">
                     <div className="overlay">
