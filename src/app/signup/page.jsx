@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { BounceLoader } from "react-spinners";
+import { BeatLoader, BounceLoader, BarLoader,RingLoader } from "react-spinners";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 import { ToastError, ToastSuccess } from "../components/toasters/taoster";
@@ -49,8 +49,11 @@ const Page = () => {
 
                     if ((CheckPassword(user.password))) {
                         const response = await axios.post("/api/users/signup", user);
+                        
                         if (response.status === 200) {
                             router.push("/login");
+                            ToastSuccess(response.data.message)
+                            
                         }
                     }
                     else {
@@ -118,10 +121,12 @@ const Page = () => {
                             placeholder={"Password"}
                             value={user.password}
                             onChange={(e) => setUser({ ...user, password: e.target.value })} />
-                        <button className="custom-btn btn-15" onClick={onSubmit}
+                       
+
+                        <button className="custom-btn btn-15 h-10" onClick={onSubmit}
                             disabled={false}>
 
-                            {loading ? <BounceLoader className={""} /> : "Sign Up"}</button>
+                            {loading ? <BeatLoader size={5} className={""} color={"white"} />: "Sign Up"}</button>
 
                         <Link className={"text-sm my-2"} href={"/login"}>
                             Already have an account? Login
