@@ -10,7 +10,8 @@ const page = () => {
     const [data, setdata] = useState("second")
     const getCurrentUserDetails = async () => {
         const res = await axios.get('/api/users/currentUser');
-        setdata(res.data.data._id)
+         console.log(res.data.data)
+        setdata(res.data.data)
         // console.log(data.data._id)
     }
 
@@ -33,8 +34,8 @@ const page = () => {
                 {/* <img src="../../../public/Profile_logo.png" alt="Profile_logo" /> */}
                 <h1 className='text-9xl'>Profile page</h1>
                 <h2 className='text-3xl text-bold mt-5'>
-                    {data == "second" ? "User Profile ID" : <Link className='text-3xl text-bold' href={`/profile/${data}`}>{`User Profile ID:\t`}
-                        <span className='text-3xl text-bold border-b-4 border-white mx-3' >{`${data}`}
+                    {data == "second" ? "User Profile ID" : <Link className='text-3xl text-bold' href={`/profile/${data._id}`}>{`User Profile ID:\t`}
+                        <span className='text-3xl text-bold border-b-4 border-white mx-3' >{`${JSON.stringify(data?._id)}`}
                         </span>
                     </Link>}
                 </h2>
