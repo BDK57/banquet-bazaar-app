@@ -10,18 +10,25 @@ export async function POST(request) {
         const { displayName, email, accessToken } = body;
         console.log("display name",displayName)
         console.log("email",email)
-        console.log("access token",accessToken)
-        
-        const newuser = await User.create({
-            username: displayName,
-            email: email,
-            password: accessToken,
-            isSocialUser:true
-        })
+
+        console.log("access token", accessToken)
+        let user;
+        user = await User.findOne({ email });
+        if (!user) {
+            console.log("hello")
+            user = await User.create({
+                username: displayName,
+                email: email,
+                password: accessToken,
+                isSocialUser:true
+            })
+        }
+       
         const tokenData = {
-            id: newuser._id,
-            username: newuser.username,
-            email: newuser.email,
+            id: user._id,
+            username: user.username,
+            email: user.email,
+
         };
 
         console.log("saves",tokenData)
