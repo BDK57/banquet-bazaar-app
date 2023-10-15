@@ -3,14 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
-import { PropagateLoader } from "react-spinners";
-
 import { BeatLoader, BounceLoader, BarLoader,RingLoader } from "react-spinners";
 import { ToastError, ToastSuccess } from "../components/toasters/taoster";
 import { CheckPassword, ValidateEmail } from "@/helpers/validation/validator";
-import { useSession, signIn } from "next-auth/react";
-import { data } from "autoprefixer";
-import GoogleSignin, { Auth, provider } from "../firebase.config";
+import { Auth, provider } from "../firebase.config";
 import { signInWithPopup } from "firebase/auth";
 const Page = () => {
 
@@ -21,8 +17,6 @@ const Page = () => {
         }, 50)
 
     }, []);
-
-
 
 
     const router = useRouter();
@@ -107,11 +101,7 @@ const Page = () => {
             else {
                 ToastError("Fill The Given Form")
             }
-
-
         }
-
-
 
         catch (error) {
             ToastError("Error: " + error.response.data.error)

@@ -18,10 +18,6 @@ export async function POST(request) {
             password: accessToken,
             isSocialUser:true
         })
-     
-        
-        
-        
         const tokenData = {
             id: newuser._id,
             username: newuser.username,
