@@ -11,7 +11,6 @@ export async function POST(request) {
         const body = await request.json();
 
         const { email, password } = body;
-        // check if the user already exists
         const user = await User.findOne({ email });
         if (!user) {
             return NextResponse.json(
@@ -19,7 +18,6 @@ export async function POST(request) {
                 { status: 400 },
             );
         }
-        // check if the password is correct
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) {
             return NextResponse.json(
@@ -27,7 +25,7 @@ export async function POST(request) {
                 { status: 401 },
             );
         }
-        
+
         const tokenData = {
             id: user._id,
             username: user.username,
