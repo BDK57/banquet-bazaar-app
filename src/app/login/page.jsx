@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
-import { BeatLoader, BounceLoader, BarLoader,RingLoader } from "react-spinners";
+import { BeatLoader, BounceLoader, BarLoader, RingLoader } from "react-spinners";
 import { ToastError, ToastSuccess } from "../components/toasters/taoster";
 import { CheckPassword, ValidateEmail } from "@/helpers/validation/validator";
 import { Auth, provider } from "../firebase.config";
@@ -44,6 +44,15 @@ const Page = () => {
                 }
                 console.log("data",data)
                 const res = await axios.post('/api/users/sociallogin',data)
+            if (result.user) {
+                console.log("rr", result.user.accessToken)
+                const data = {
+                    displayName: result.user.displayName,
+                    email: result.user.email,
+                    accessToken: result.user.accessToken,
+                }
+                console.log("data", data)
+                const res = await axios.post('/api/users/sociallogin', data)
                 if (res.status === 200) {
                     ToastSuccess('Log in')
                     router.push("/profile");
@@ -147,6 +156,12 @@ const Page = () => {
                             disabled={false}>
 
                             {loading ? <BeatLoader size={5} className={""} color={"white"} />: "Sign In"}</button> </form>
+
+                        {/* <a href="#">Forgot your password?</a> */}
+                        <button className="custom-btn btn-15 h-10" onClick={onSubmit}
+                            disabled={false}>
+
+                            {loading ? <BeatLoader size={5} className={""} color={"white"} /> : "Sign In"}</button> </form>
                 </div>
                 <div className="overlay-container">
                     <div className="overlay">
