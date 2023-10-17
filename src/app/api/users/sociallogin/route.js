@@ -10,7 +10,6 @@ export async function POST(request) {
         const { displayName, email, accessToken } = body;
         console.log("display name",displayName)
         console.log("email",email)
-
         console.log("access token", accessToken)
         let user;
         user = await User.findOne({ email });
@@ -28,8 +27,6 @@ export async function POST(request) {
             id: user._id,
             username: user.username,
             email: user.email,
-
-        };
 
         console.log("saves",tokenData)
         const token = await jwt.sign(tokenData, process.env.JWT_TOKEN_SECRET, {

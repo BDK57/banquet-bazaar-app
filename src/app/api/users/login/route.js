@@ -25,7 +25,6 @@ export async function POST(request) {
                 { status: 401 },
             );
         }
-
         const tokenData = {
             id: user._id,
             username: user.username,

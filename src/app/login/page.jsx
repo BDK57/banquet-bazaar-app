@@ -35,6 +35,15 @@ const Page = () => {
     const GoogleSignin = async () => {
         await signInWithPopup(Auth, provider).then(async (result) => {
             console.log("result", result.user)
+            if(result.user){
+                console.log("rr",result.user.accessToken)
+                const data = {
+                    displayName:result.user.displayName,
+                    email:result.user.email,
+                    accessToken:result.user.accessToken,
+                }
+                console.log("data",data)
+                const res = await axios.post('/api/users/sociallogin',data)
             if (result.user) {
                 console.log("rr", result.user.accessToken)
                 const data = {
@@ -142,6 +151,12 @@ const Page = () => {
                         <input type="password" placeholder="Password" value={user.password} onChange={(e) => {
                             setUser({ ...user, password: e.target.value })
                         }} />
+                        <a href="#">Forgot your password?</a>
+                        <button className="custom-btn btn-15 h-10" onClick={onSubmit}
+                            disabled={false}>
+
+                            {loading ? <BeatLoader size={5} className={""} color={"white"} />: "Sign In"}</button> </form>
+
                         {/* <a href="#">Forgot your password?</a> */}
                         <button className="custom-btn btn-15 h-10" onClick={onSubmit}
                             disabled={false}>
