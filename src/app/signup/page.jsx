@@ -21,21 +21,9 @@ const Page = () => {
         isVerified: false,
         isAdmin: false,
     });
-    const [buttonDisabled, setButtonDisabled] = useState(false);
-    useEffect(() => {
-        if (
-            user.email.length > 0 &&
-            user.password.length > 0 &&
-            user.username.length > 0
-        ) {
+    
 
-            setButtonDisabled(false);
-        } else {
-            setButtonDisabled(true);
-        }
-    }, [user]);
     const onSubmit = async (e) => {
-
         setLoading(true);
         e.preventDefault();
         try {
@@ -90,22 +78,13 @@ const Page = () => {
     return (
         <>
 
-
-
-            {/* NEW SIGN UP FORM */}
-
             <div className="bg">
             </div>
             <div className="container" id="container">
                 <div className="form-container sign-up-container">
                     <form action="#">
-                        <h1 className="text-3xl">Create Account</h1>
-                        <div className="social-container">
-                            <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
-                            <a href="#" className="social"><i className="fab fa-google-plus-g" /></a>
-                            <a href="#" className="social"><i className="fab fa-linkedin-in" /></a>
-                        </div>
-                        <span>or use your email for registration</span>
+                        <h1 className="text-3xl mb-5">Create Account</h1>
+    
                         <input type={"text"}
                             id={"username"}
                             placeholder={"Username"}
@@ -123,12 +102,12 @@ const Page = () => {
                             onChange={(e) => setUser({ ...user, password: e.target.value })} />
                        
 
-                        <button className="custom-btn btn-15 h-10" onClick={onSubmit}
+                        <button className="custom-btn btn-15 h-10  mt-5" onClick={onSubmit}
                             disabled={false}>
 
                             {loading ? <BeatLoader size={5} className={""} color={"white"} />: "Sign Up"}</button>
 
-                        <Link className={"text-sm my-2"} href={"/login"}>
+                        <Link className={"text-sm my-2 mt-5"} href={"/login"}>
                             Already have an account? Login
                         </Link>
                     </form>
