@@ -37,11 +37,13 @@ const Page = () => {
 
                     if ((CheckPassword(user.password))) {
                         const response = await axios.post("/api/users/signup", user);
-                        
-                        if (response.status === 200) {
+                        console.log("res",response.data)
+                        if (response.data.status === 200) {
                             router.push("/login");
                             ToastSuccess(response.data.message)
-                            
+                        }
+                        else{
+                            ToastSuccess(response.data.error)
                         }
                     }
                     else {

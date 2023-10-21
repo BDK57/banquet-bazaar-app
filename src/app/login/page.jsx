@@ -70,7 +70,7 @@ const Page = () => {
                             router.push("/profile");
                         }
                         else {
-                            ToastError(response.data.message)
+                            ToastError(response.data.error)
                         }
                     }
                     else {
