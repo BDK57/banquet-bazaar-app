@@ -3,11 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
-
-import { BeatLoader, } from "react-spinners";
-
 import { BeatLoader, BounceLoader, BarLoader, RingLoader } from "react-spinners";
-
 import { ToastError, ToastSuccess } from "../components/toasters/taoster";
 import { CheckPassword, ValidateEmail } from "@/helpers/validation/validator";
 import { Auth, provider } from "../firebase.config";
@@ -17,7 +13,9 @@ const Page = () => {
     useEffect(() => {
         setTimeout(() => {
             document.querySelector('#container').classList.remove('right-panel-active')
+
         }, 50)
+
     }, []);
 
 
@@ -29,6 +27,7 @@ const Page = () => {
     });
 
 
+    const [buttonDisabled, setButtonDisabled] = useState(false);
     const [loading, setLoading] = useState(false);
 
 
@@ -36,13 +35,13 @@ const Page = () => {
     const GoogleSignin = async () => {
         await signInWithPopup(Auth, provider).then(async (result) => {
             console.log("result", result.user)
-            if (result.user) {
+            if(result.user){
+                console.log("rr",result.user.accessToken)
                 const data = {
-                    displayName: result.user.displayName,
-                    email: result.user.email,
-                    accessToken: result.user.accessToken,
+                    displayName:result.user.displayName,
+                    email:result.user.email,
+                    accessToken:result.user.accessToken,
                 }
-
                 console.log("data",data)
                 const res = await axios.post('/api/users/sociallogin',data)
             if (result.user) {
@@ -58,16 +57,21 @@ const Page = () => {
                     ToastSuccess('Log in')
                     router.push("/profile");
                 }
-
             }
 
         }).catch((error) => {
-            ToastError(error)
+            console.log("error", error)
         })
     }
 
 
-
+    useEffect(() => {
+        if (user.email.length > 0 && user.password.length > 0) {
+            setButtonDisabled(false);
+        } else {
+            setButtonDisabled(true);
+        }
+    }, [user]);
 
 
 
@@ -75,17 +79,21 @@ const Page = () => {
 
         setLoading(true);
         e.preventDefault();
+
         try {
-            if (user.email.length > 0 || user.password.length > 0) {
+            if (
+                user.email.length > 0 ||
+                user.password.length > 0
+            ) {
                 if (ValidateEmail(user.email)) {
+
+
+
                     if ((CheckPassword(user.password))) {
                         const response = await axios.post("/api/users/login", user);
-                        if (response.data.status === 200) {
+                        if (response.status === 200) {
                             ToastSuccess('Log in')
                             router.push("/profile");
-                        }
-                        else {
-                            ToastError(response.data.error)
                         }
                     }
                     else {
@@ -105,7 +113,8 @@ const Page = () => {
         }
 
         catch (error) {
-            ToastError("Error: " + error)
+            ToastError("Error: " + error.response.data.error)
+            // console.log(error);
         } finally {
             setLoading(false);
         }
@@ -119,9 +128,14 @@ const Page = () => {
 
         <>
 
+
+
             <div className="bg">
             </div>
+            {/* <button className="custom-btn btn-15" onClick={() => { ToastSuccess('Log in') }}>test Toast </button> */}
+
             <div className="container right-panel-active" id="container">
+
                 <div className="form-container sign-in-container">
                     <form action="#">
                         <h1 className="text-3xl">Sign in</h1>
@@ -130,24 +144,22 @@ const Page = () => {
                             <a href="#" onClick={GoogleSignin} className="social" ><i className="fab fa-google-plus-g" /></a>
                             <a href="#" className="social"><i className="fab fa-linkedin-in" /></a>
                         </div>
-                        <span className="text-lg mt-2 mb-5">or use your account</span>
+                        <span>or use your account</span>
                         <input type="email" placeholder="Email" value={user.email} onChange={(e) => {
                             setUser({ ...user, email: e.target.value })
                         }} />
                         <input type="password" placeholder="Password" value={user.password} onChange={(e) => {
                             setUser({ ...user, password: e.target.value })
                         }} />
-                        <Link href={'/forgetpassword'} >Forgot your password?</Link>
+                        <a href="#">Forgot your password?</a>
                         <button className="custom-btn btn-15 h-10" onClick={onSubmit}
                             disabled={false}>
-
 
                             {loading ? <BeatLoader size={5} className={""} color={"white"} />: "Sign In"}</button> </form>
 
                         {/* <a href="#">Forgot your password?</a> */}
                         <button className="custom-btn btn-15 h-10" onClick={onSubmit}
                             disabled={false}>
-
 
                             {loading ? <BeatLoader size={5} className={""} color={"white"} /> : "Sign In"}</button> </form>
                 </div>
@@ -161,6 +173,7 @@ const Page = () => {
                         <div className="overlay-panel overlay-right">
                             <h1 className="text-3xl">Hello, Friend!</h1>
                             <p>Enter your personal details and start journey with us</p>
+
                             <Link href='/signup'> <button className="ghost custom-btn btn-15" id="signUp">Sign up</button></Link>
                         </div>
                     </div>
