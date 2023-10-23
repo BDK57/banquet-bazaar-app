@@ -11,7 +11,6 @@ export async function POST(request) {
         const body = await request.json();
 
         const { email, password } = body;
-        // check if the user already exists
         const user = await User.findOne({ email });
 
         if (!user || user == null || user == undefined) {
@@ -22,7 +21,6 @@ export async function POST(request) {
         if (!valid) {
             return NextResponse.json({status:401,error:"Invalid credentials"})
         }
-        
         const tokenData = {
             id: user._id,
             username: user.username,

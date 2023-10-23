@@ -9,6 +9,7 @@ export async function POST(request) {
     try {
         const body = await request.json();
         const { username, email, password } = body;
+
         const newemail = new EmailValidator();
         const { wellFormed, validDomain, validMailbox } = await newemail.verify(email)
         if(!wellFormed || !validDomain || !validMailbox ) {
@@ -16,12 +17,12 @@ export async function POST(request) {
             return NextResponse.json({status:400,error:"Not A valid Email"})
         }
         
+
         const user = await User.findOne({ email })
         if (user) {
             return NextResponse.json({status:400,error:"User already exists"})
         }
 
-    
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
         const newUser = new User({ username, email, password: hashedPassword });
