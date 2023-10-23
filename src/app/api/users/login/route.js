@@ -12,14 +12,18 @@ export async function POST(request) {
 
         const { email, password } = body;
         const user = await User.findOne({ email });
-
-        if (!user || user == null || user == undefined) {
-            return NextResponse.json({status:400,error:"User doesnot exists"})
+        if (!user) {
+            return NextResponse.json(
+                { error: "User doesn't exists" },
+                { status: 400 },
+            );
         }
-
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) {
-            return NextResponse.json({status:401,error:"Invalid credentials"})
+            return NextResponse.json(
+                { error: "Invalid Credentials" },
+                { status: 401 },
+            );
         }
         const tokenData = {
             id: user._id,
@@ -32,7 +36,6 @@ export async function POST(request) {
         const response = NextResponse.json({
             message: "Logged in successfully",
             success: true,
-            status:200,
         });
         response.cookies.set("token", token, { httpOnly: true });
         return response;
