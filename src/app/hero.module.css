@@ -1,0 +1,221 @@
+.hero__section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    /* background: #0a0a0a 0 0 no-repeat padding-box; */
+}
+
+.hero__section.show .hero__subtitle {
+    animation: opacityAnim 2.6s ease .5s 1 normal forwards;
+}
+
+
+.hero_logo {
+    animation: opacityAnim 2.6s ease .5s 1 normal forwards;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    opacity: 1;
+}
+
+
+
+.hero__subtitle {
+    margin: 48px 0 0;
+    text-align: center;
+    font: normal normal normal 16px/22px Cinzel;
+    letter-spacing: 0;
+    color: #d5af80;
+    /* opacity: 0; */
+}
+
+.hero__subtitle:before {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 1px;
+    width: calc(50% - 52px);
+    left: 0;
+    top: 0;
+    background-color: #d5af80;
+    /* transform: scaleX(0); */
+    transform-origin: left;
+}
+
+.hero__subtitle:after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 1px;
+    width: calc(50% - 52px);
+    right: 0;
+    top: 0;
+    background-color: #d5af80;
+    /* transform: scaleX(0); */
+    transform-origin: left;
+}
+
+.hero__title {
+    word-break: break-word;
+    margin: 14px 0 0;
+    text-align: center;
+    font: normal normal normal 50px/68px Cinzel;
+    letter-spacing: 7.5px;
+    color: #d5af80;
+    /* opacity: 0; */
+}
+
+.hero__title:after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 1px;
+    right: 0;
+    top: 0;
+    background-color: #d5af80;
+    /* transform: scaleY(0); */
+    transform-origin: top;
+}
+
+.hero__title:before {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 1px;
+    left: 0;
+    top: 0;
+    background-color: #d5af80;
+    /* transform: scaleY(0); */
+    transform-origin: bottom;
+}
+
+.hero__desk {
+    margin: 14px 0 26px;
+    text-align: center;
+    font: normal normal normal 16px/22px Cinzel;
+    letter-spacing: 0;
+    color: #d5af80;
+    /* opacity: 0; */
+}
+
+.hero__desk:before {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 1px;
+    width: calc(50% - 45px);
+    left: 0;
+    bottom: 0;
+    background-color: #d5af80;
+    /* transform: scaleX(0); */
+    transform-origin: right;
+}
+
+.hero__desk:after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 1px;
+    width: calc(50% - 45px);
+    right: 0;
+    bottom: 0;
+    background-color: #d5af80;
+    /* transform: scaleX(0); */
+    transform-origin: right;
+}
+
+.hero__since_wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* opacity: 0; */
+}
+
+.hero__since {
+    margin: 0;
+    text-align: center;
+    font: normal normal normal 12px/16px Cinzel;
+    letter-spacing: 0;
+    color: #d5af80;
+}
+
+.hero__since_stars {
+    display: flex;
+    justify-content: center;
+}
+
+.bannerContainer {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 2560px
+}
+
+.outlineContent {
+    padding-left: 16px;
+    padding-right: 16px
+}
+
+.section_title {
+    text-align: center;
+    font: normal normal normal 18px/25px Cinzel;
+    letter-spacing: 0;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    width: -moz-max-content;
+    width: max-content;
+    margin: 0 auto;
+    align-items: center;
+    /* margin-top: 2rem; */
+}
+
+.section_title:before {
+    content: url(../../public/icons/Diamond.9ed26887ed10ae24d374b45f5b347613.svg);
+    color: #d5af80;
+    width: 12px;
+    margin-bottom: 6px;
+    line-height: 1;
+    font-size: 0;
+    transform: rotate(0turn);
+    transition: transform 1.9s ease;
+}
+
+
+.section_title:after {
+    transition: width 1.9s ease;
+    content: "";
+    height: 1px;
+    background-color: #d5af80;
+    width: 100%;
+    margin-top: .75rem;
+}
+
+.welcome_desk {
+    margin: 30px 0 0;
+    text-align: center;
+    font: normal normal 300 12px/25px Roboto;
+    letter-spacing: 0;
+    color: #000;
+}
+
+.hero__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0;
+}

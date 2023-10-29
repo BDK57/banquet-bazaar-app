@@ -15,7 +15,7 @@ const Page = ({ params }) => {
     });
     const [loading, setLoading] = useState(false);
 
-   
+
     const onSubmit = async (e) => {
 
         setLoading(true);
@@ -56,23 +56,23 @@ const Page = ({ params }) => {
 
     return (
         <>
-            <div className="bg">
-            </div>
-            <div className="container newform">
+            <div className="main">
+                <div className="forgetpassform">
 
-                <form action="#">
-                    <h1 className="text-3xl mb-5">Reset Password</h1>
-                    <input type="password" placeholder="Enter Password" value={user.password} onChange={(e) => {
-                        setUser({ ...user, password: e.target.value })
-                    }} />
-                    <input type="password" placeholder="Enter Confirm Password" value={user.confirmpassword} onChange={(e) => {
-                        setUser({ ...user, confirmpassword: e.target.value })
-                    }} />
-                    <button className="custom-btn btn-15 h-10 mt-5" onClick={onSubmit}>
-
-                        {loading ? <BeatLoader size={5} className={""} color={"white"} /> : "Reset The Password"}</button>
-                </form>
+                    <form action="#">
+                        <h1 className="text-3xl mb-5">Reset Password</h1>
+                        <input type="password" placeholder="Enter Password" value={user.password} onChange={(e) => {
+                            setUser({ ...user, password: e.target.value })
+                        }} />
+                        <input type="password" placeholder="Enter Confirm Password" value={user.confirmpassword} onChange={(e) => {
+                            setUser({ ...user, confirmpassword: e.target.value })
+                        }} />
+                        <button className="custom-btn btn-15 h-10 mt-5" onClick={onSubmit}>
+                            {loading ? <BeatLoader size={5} className={""} color={"white"} /> : "Reset The Password"}</button>
+                    </form>
+                </div>
             </div>
+
         </>
     );
 };

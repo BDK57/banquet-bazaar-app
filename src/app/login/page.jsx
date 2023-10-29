@@ -10,6 +10,7 @@ import { Auth, provider } from "../firebase.config";
 import { signInWithPopup } from "firebase/auth";
 const Page = () => {
 
+
     useEffect(() => {
         setTimeout(() => {
             document.querySelector('#container').classList.remove('right-panel-active')
@@ -50,6 +51,8 @@ const Page = () => {
             ToastError(error)
         })
     }
+
+
 
 
 
@@ -100,15 +103,14 @@ const Page = () => {
 
 
 
+
     return (
 
         <>
-
-            <div className="bg">
-            </div>
+            <div className="main">
             <div className="container right-panel-active" id="container">
                 <div className="form-container sign-in-container">
-                    <form action="#">
+                    <form  action="#">
                         <h1 className="text-3xl">Sign in</h1>
                         <div className="social-container">
                             <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
@@ -122,7 +124,7 @@ const Page = () => {
                         <input type="password" placeholder="Password" value={user.password} onChange={(e) => {
                             setUser({ ...user, password: e.target.value })
                         }} />
-                        <Link href={'/forgetpassword'} >Forgot your password?</Link>
+                        <Link href={'/forgetpassword'} className="mt-5 mb-5" >Forgot your password?</Link>
                         <button className="custom-btn btn-15 h-10" onClick={onSubmit}
                             disabled={false}>
 
@@ -143,6 +145,8 @@ const Page = () => {
                     </div>
                 </div>
             </div>
+            </div>
+            
         </>
     );
 };

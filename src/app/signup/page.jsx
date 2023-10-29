@@ -79,10 +79,8 @@ const Page = () => {
     }, []);
     return (
         <>
-
-            <div className="bg">
-            </div>
-            <div className="container" id="container">
+           <div className="main">
+           <div className="container" id="container">
                 <div className="form-container sign-up-container">
                     <form action="#">
                         <h1 className="text-3xl mb-5">Create Account</h1>
@@ -130,7 +128,7 @@ const Page = () => {
                             setUser({ ...user, password: e.target.value })
                         }} />
                         <a href="#">Forgot your password?</a>
-                        <button className="custom-btn btn-15" onClick={onSubmit}>Sign in</button>
+                        <button className="custom-btn btn-15 mt-5" onClick={onSubmit}>Sign in</button>
                     </form>
                 </div>
                 <div className="overlay-container">
@@ -152,6 +150,8 @@ const Page = () => {
                 </div>
                 <Toaster />
             </div>
+           </div>
+          
         </>
     );
 };

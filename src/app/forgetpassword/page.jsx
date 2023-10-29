@@ -16,16 +16,9 @@ const Page = () => {
     });
 
 
-    const [buttonDisabled, setButtonDisabled] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        if (user.email.length > 0) {
-            setButtonDisabled(false);
-        } else {
-            setButtonDisabled(true);
-        }
-    }, [user]);
+    
 
 
     const onSubmit = async (e) => {
@@ -64,11 +57,12 @@ const Page = () => {
         }
     };
 
+    
+
     return (
         <>
-            <div className="bg">
-            </div>
-            <div className="container newform">
+            <div className="main">
+            <div className="forgetpassform">
                     <form action="#">
                         <h1 className="text-2xl mb-5">Forgot Password</h1>
                         <input type="email" placeholder="Email" value={user.email} onChange={(e) => {
@@ -80,6 +74,8 @@ const Page = () => {
                             {loading ? <BeatLoader size={5} className={""} color={"white"} />: "Verify email"}</button>
                     </form>
                         </div>
+            </div>
+            
         </>
     );
 };
