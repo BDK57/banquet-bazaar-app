@@ -21,10 +21,10 @@ const userSchema = new mongoose.Schema({
     isVerified: {
         type: Boolean, default: false
     },
-    isAdmin: {
-        type: Boolean, default: false
+    usertype:{
+        type:String,
+        default:'user',
     },
-    
     verifyToken: String,
     verifyTokenExpiry: Date
 })
