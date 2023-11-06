@@ -5,7 +5,7 @@ import Link from "next/link";
 import { BeatLoader, BounceLoader, BarLoader,RingLoader } from "react-spinners";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
-import { ToastError, ToastSuccess } from "../components/toasters/taoster";
+import { ToastError,ToastSuccess } from "@/app/components/toasters/taoster";
 import { CheckPassword, ValidateEmail } from "@/helpers/validation/validator";
 
 
@@ -39,7 +39,7 @@ const Page = () => {
                         const response = await axios.post("/api/users/signup", user);
                         console.log("res",response.data)
                         if (response.data.status === 200) {
-                            router.push("/login");
+                            router.push("/user/login");
                             ToastSuccess(response.data.message)
                         }
                         else{
@@ -64,7 +64,6 @@ const Page = () => {
 
         } catch (error) {
             ToastError("Error: " + error.response.data.error)
-            // console.log("error Found", error.response);
 
         } finally {
             setLoading(false);
@@ -77,12 +76,14 @@ const Page = () => {
             container.classList.add('right-panel-active')
         }, 200)
     }, []);
+
+
     return (
         <>
            <div className="main">
            <div className="container" id="container">
                 <div className="form-container sign-up-container">
-                    <form action="#">
+                    <form className="globolform" action="#">
                         <h1 className="text-3xl mb-5">Create Account</h1>
     
                         <input type={"text"}
@@ -107,13 +108,13 @@ const Page = () => {
 
                             {loading ? <BeatLoader size={5} className={""} color={"white"} />: "Sign Up"}</button>
 
-                        <Link className={"text-sm my-2 mt-5"} href={"/login"}>
+                        <Link className={"text-sm my-2 mt-5"} href={"/user/login"}>
                             Already have an account? Login
                         </Link>
                     </form>
                 </div>
                 <div className="form-container sign-in-container">
-                    <form action="#">
+                    <form className="globolform" action="#">
                         <h1>Sign in</h1>
                         <div className="social-container">
                             <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
@@ -136,9 +137,8 @@ const Page = () => {
                         <div className="overlay-panel overlay-left">
                             <h1 className="text-3xl">Welcome Back!</h1>
                             <p>To keep connected with us please login with your personal info</p>
-                            {/* <button className="ghost custom-btn btn-15" id="signIn">Sign In</button> */}
 
-                            <Link href='/login'> <button className="ghost custom-btn btn-15" id="signIn">Sign In</button></Link>
+                            <Link href='/user/login'> <button className="ghost custom-btn btn-15" id="signIn">Sign In</button></Link>
 
                         </div>
                         <div className="overlay-panel overlay-right">

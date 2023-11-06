@@ -1,0 +1,51 @@
+.vendorform{
+    height: 60vh;
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: white;
+}
+
+
+.vendorheader{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.vendorheader h1{
+    font-size: 2rem;
+    font-weight: 900;
+    color: black;
+}
+
+.cancelbutton{
+    background-color: black;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.inputfieldcontent{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap:2rem
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 8px 0px 0px 0px;
+    align-items: center;
+}
+
+.parent{
+    position: relative;
+}
+.parent:hover{
+    position: absolute;
+}

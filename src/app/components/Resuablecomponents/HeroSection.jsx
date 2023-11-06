@@ -36,8 +36,8 @@ function HeroSection() {
         <div className="relative flex flex-col justify-center container mx-auto">
             <img src="/logos/Hero_Standard_AuroraLogo.svg" alt="Logo" className={`${heroStyle.backBlue} ${heroStyle.hero_logo}`} />
             <h2 className={heroStyle.hero__subtitle}>welcome to</h2>
-            {/* <h1 className={heroStyle.hero__title}>AURORA</h1> */}
-            <h3 className={heroStyle.hero__desk}>Banquet Bazzar</h3>
+            <h1 className={heroStyle.hero__title}>Banquet Bazzar</h1>
+            <h3 className={heroStyle.hero__desk}></h3>
             <div className={heroStyle.hero__since_wrapper}>
                 {/* <h4 className={heroStyle.hero__since}>since 2018</h4> */}
                 <div className={heroStyle.hero__since_stars}>

@@ -1,7 +1,6 @@
 import Hall from '@/models/HallMode';
 import { connect } from '@/configDb/configDb';
 import { NextResponse } from 'next/server';
-import User from '@/models/userModel';
 export const GET = async () => {
   try {
    await connect();

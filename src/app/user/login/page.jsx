@@ -4,10 +4,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 import { BeatLoader, } from "react-spinners";
-import { ToastError, ToastSuccess } from "../components/toasters/taoster";
+import { ToastError,ToastSuccess } from "@/app/components/toasters/taoster";
 import { CheckPassword, ValidateEmail } from "@/helpers/validation/validator";
-import { Auth, provider } from "../firebase.config";
+// import { Auth, provider } from "../firebase.config";
 import { signInWithPopup } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { Auth , provider } from "@/app/firebase.config";
+import { login } from "@/redux/userslice/userslice";
 const Page = () => {
 
 
@@ -27,7 +30,7 @@ const Page = () => {
 
 
     const [loading, setLoading] = useState(false);
-
+    let dispatch = useDispatch();
 
 
     const GoogleSignin = async () => {
@@ -41,8 +44,9 @@ const Page = () => {
                 }
                 const res = await axios.post('/api/users/sociallogin', data)
                 if (res.status === 200) {
+                    dispatch(login(data))
                     ToastSuccess('Log in')
-                    router.push("/profile");
+                    router.push("/");
                 }
 
             }
@@ -70,7 +74,7 @@ const Page = () => {
                         const response = await axios.post("/api/users/login", user);
                         if (response.data.status === 200) {
                             ToastSuccess('Log in')
-                            router.push("/profile");
+                            router.push("/");
                         }
                         else {
                             ToastError(response.data.error)
@@ -110,7 +114,7 @@ const Page = () => {
             <div className="main">
             <div className="container right-panel-active" id="container">
                 <div className="form-container sign-in-container">
-                    <form  action="#">
+                    <form className="globolform"  action="#">
                         <h1 className="text-3xl">Sign in</h1>
                         <div className="social-container">
                             <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
@@ -124,7 +128,7 @@ const Page = () => {
                         <input type="password" placeholder="Password" value={user.password} onChange={(e) => {
                             setUser({ ...user, password: e.target.value })
                         }} />
-                        <Link href={'/forgetpassword'} className="mt-5 mb-5" >Forgot your password?</Link>
+                        <Link href={'/user/forgetpassword'} className="mt-5 mb-5" >Forgot your password?</Link>
                         <button className="custom-btn btn-15 h-10" onClick={onSubmit}
                             disabled={false}>
 
@@ -140,7 +144,7 @@ const Page = () => {
                         <div className="overlay-panel overlay-right">
                             <h1 className="text-3xl">Hello, Friend!</h1>
                             <p>Enter your personal details and start journey with us</p>
-                            <Link href='/signup'> <button className="ghost custom-btn btn-15" id="signUp">Sign up</button></Link>
+                            <Link href='/user/signup'> <button className="ghost custom-btn btn-15" id="signUp">Sign up</button></Link>
                         </div>
                     </div>
                 </div>

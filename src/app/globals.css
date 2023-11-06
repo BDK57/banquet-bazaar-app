@@ -148,7 +148,7 @@ button.ghost {
 }
 
 
-form {
+.globolform {
   background-color: #FFFFFF;
   display: flex;
   align-items: center;

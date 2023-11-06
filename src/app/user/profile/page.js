@@ -31,7 +31,6 @@ const page = () => {
     return (
         <>
             <div className='bg flex justify-center items-center flex-col gap-5'>
-                {/* <img src="../../../public/Profile_logo.png" alt="Profile_logo" /> */}
                 <h1 className='text-9xl'>Profile page</h1>
                 <h2 className='text-3xl text-bold mt-5'>
                     {data == "second" ? "User Profile ID" : <Link className='text-3xl text-bold' href={`/profile/${data._id}`}>{`User Profile ID:\t`}
@@ -39,7 +38,6 @@ const page = () => {
                         </span>
                     </Link>}
                 </h2>
-                {/* <button className='text-xl font-semibold p-5 bg-blue-400' >CliCK</button> */}
                 <div className='flex justify-between items-center gap-5'>
                     <button className="custom-btn btn-15" id="signIn" onClick={getCurrentUserDetails}>See Profile</button>
                     <button className="custom-btn btn-15 " onClick={logout}>Log Out</button>

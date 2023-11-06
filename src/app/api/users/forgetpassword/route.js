@@ -23,7 +23,7 @@ export async function POST(request) {
       
         const verifyTokenExpiry = Date.now() + 15 * 6 * 1000;
        
-        const url = `http://localhost:3000/reset-password/${resetToken}`;
+        const url = `http://localhost:3000/user/reset-password/${resetToken}`;
     
         await User.findOneAndUpdate(
           { email:user.email },

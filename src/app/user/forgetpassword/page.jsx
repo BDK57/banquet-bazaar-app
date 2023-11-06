@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { BeatLoader } from "react-spinners";
-import { ToastSuccess,ToastError } from "../components/toasters/taoster";
+import { ToastError , ToastSuccess } from "@/app/components/toasters/taoster";
 import {ValidateEmail } from "@/helpers/validation/validator";
 import axios from "axios";
 

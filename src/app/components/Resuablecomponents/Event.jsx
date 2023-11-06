@@ -10,7 +10,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 function Event(props) {
-    console.log("sssss",props.PremiumHall)
     return (
         <section className={`${heroStyle.bannerContainer} py-10 ${heroStyle.outlineContent} container lg:relative lg:pt-10 lg:pb-16    lg:after:content-['']
     lg:after:block
@@ -58,8 +57,8 @@ function Event(props) {
                     "disableOnInteraction": false
                 }}
                 watchSlidesVisibility={true}
-                onSlideChange={() => console.log("slide change")}
-                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={() => {}}
+                onSwiper={(swiper) => {}}
                 modules={[Navigation, Autoplay]}
                 navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
                 pagination={{ clickable: true, dynamicBullets: true }}
