@@ -10,7 +10,7 @@ export const GET = async () => {
             Halldata,
            status: 200,
         }; 
-        return NextResponse.json({ data:response });
+        return NextResponse.json({ data:Halldata });
     }
     return NextResponse.json({msg:"No halls yet been added To show",status:201})
   } catch (error) {

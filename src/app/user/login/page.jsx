@@ -44,7 +44,8 @@ const Page = () => {
                 }
                 const res = await axios.post('/api/users/sociallogin', data)
                 if (res.status === 200) {
-                    dispatch(login(data))
+                    console.log("res is",res.data.user)
+                    dispatch(login(res.data.user))
                     ToastSuccess('Log in')
                     router.push("/");
                 }

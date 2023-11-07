@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 function Event(props) {
     return (
-        <section className={`${heroStyle.bannerContainer} py-10 ${heroStyle.outlineContent} container lg:relative lg:pt-10 lg:pb-16    lg:after:content-['']
+    <section className={`${heroStyle.bannerContainer} py-10 ${heroStyle.outlineContent} container lg:relative lg:pt-10 lg:pb-16    lg:after:content-['']
     lg:after:block
     lg:after:w-2/5
     lg:after:h-full
@@ -88,6 +88,9 @@ function Event(props) {
                             <SwiperSlide key={item.id}>
                             <div>
                                 <a className="event_item__wrapper" draggable="false">
+                                  
+
+
                                   
                                     <Image
                                         src={item.mobiledeviceimage}

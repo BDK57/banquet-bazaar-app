@@ -12,19 +12,6 @@ const Header = () => {
 
   console.log("user", userdata);
 
-  // useEffect(() => {
-
-  //     if (themeMode) {
-  //         document.querySelector('html').classList.add(`dark`)
-
-  //     }
-  //     else {
-  //         document.querySelector('html').classList.remove(`dark`)
-
-  //     }
-
-  // }, [themeMode])
-
   useEffect(() => {
     console.log(userdata.isAuthenticated);
     console.log(userdata.userdata);
@@ -34,9 +21,9 @@ const Header = () => {
     setshow(false)
   }
   return (
-    <div className="flex justify-center	items-center">
-      <section className="container  absolute z-[999] top-0">
-        <nav className="bg-transparent border-gray-200 dark:bg-gray-900 dark:border-gray-700 lg:w-full lg:mx-auto lg:relative">
+    <div className="flex bg-black	 justify-center	items-center">
+      <section className="container">
+        <nav className="border-gray-200 dark:bg-gray-900 dark:border-gray-700 lg:w-full lg:mx-auto lg:relative">
           <div className="flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" className="flex items-center w-14 md:w-16 lg:w-10">
               <img src="/logos/Hero_Standard_AuroraLogo.svg" alt="Logo" />
@@ -117,7 +104,7 @@ const Header = () => {
                       href={''}
                       className="md:text-[#fff]  block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#d5af80] md:p-0 dark:text-white md:dark:hover:text-[#d5af80] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     >
-                      {userdata.userdata.displayName}
+                      {userdata.userdata.username}
                     </Link>
                   </li>
                   <button onClick={() => setshow(true)}>

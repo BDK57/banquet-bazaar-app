@@ -13,7 +13,7 @@ export async function POST(request) {
 
         console.log("access token", accessToken)
         let user;
-        user = await User.findOne({ email });
+        user = await User.findOne({ email }).select('-password -isVerified');
         if (!user) {
             console.log("hello")
             user = await User.create({
@@ -39,6 +39,7 @@ export async function POST(request) {
         const response = NextResponse.json({
                 message: "Logged in successfully",
                 success: true,
+                user
         });
 
         response.cookies.set("token", token, { httpOnly: true });

@@ -2,6 +2,7 @@
 import './globals.css'
 import toast, { Toaster } from 'react-hot-toast';
 import MyCustomProvider from '@/redux/MyCustomProvider';
+import Header from './components/Resuablecomponents/Header';
 
 export const metadata = {
   title: 'Banquet-Bazzar-App',
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <MyCustomProvider>
+          <Header/>
         {children}        
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet" type="text/css" />
         <div><Toaster /></div>
