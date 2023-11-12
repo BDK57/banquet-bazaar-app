@@ -10,13 +10,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-function page({params}) {
-  console.log(params)
-  const data = useSelector((state) => state.banquet?.banquetdata.find((item) => item._id === params.id))
-  console.log(data)
-  return (
-    <>
-               <section className={`${heroStyle.hero__section} relative h-full`}>
+import Testimonials from '@/app/components/Resuablecomponents/Testimonials';
+import Footer from '@/app/components/Resuablecomponents/Footer';
+function page({ params }) {
+    console.log(params)
+    const data = useSelector((state) => state.banquet?.banquetdata.find((item) => item._id === params.id))
+    console.log("data is", data)
+    return (
+        <>
+            <section className={`${heroStyle.hero__section} relative h-full`}>
+                
                 <img
                     src={"/assets/hero/homepage_hero_375.webp"}
                     className=" sm:hidden max-w-[100%]  h-auto hero__image"
@@ -63,13 +66,59 @@ function page({params}) {
                     </div>
                 </div>
 
-                {/* <div className="my-10 bg-slate-200  dark:bg-gray-900 dark:hover:bg-gray-800 hover:bg-slate-300 w-fit mx-auto p-10 rounded-xl sm:gap-10  flex justify-center flex-col sm:flex-row items-center">
-                    <h1 className="text-3xl font-semibold mt-3 dark:text-white">Dark Pic</h1>
-                    <p className="text-xl font-light dark:text-blue-500 sm:hidden">by Pexels</p>
-                </div> */}
+
             </section>
-</>
-  )
+
+
+            <section className='mt-5 p-5'>
+
+                <h2
+                    className={`text-xl font-normal sm:text-4xl sm:font-medium flex flex-col justify-center items-center text-center uppercase font-[Cinzel] 
+        before:content-[url(../../public/icons/Diamond.9ed26887ed10ae24d374b45f5b347613.svg)]  before:text-[#d5af80] 
+        before:w-[18px] 
+        before:mb-3  
+        before:block 
+        before:leading-[1] 
+        before:2xl:w-[18px] 
+        
+        // before:transform: rotate(0turn); // before:transition: transform 1.9s ease;]
+        
+        // After
+
+        // after:transition: width 1.9s ease
+        after:content-[" "]
+        after:h-[1px]
+        after:bg-[#d5af80]
+        after:w-1/5
+        after:mt-3
+        after:mb-5
+        md:after:w-2/5
+        `}
+                >
+                    {data.name}
+                </h2>
+                <div
+                    className="tracking-[0.16px] text-sm text-center mt-5 mb-5"
+                >
+                    {data.Description}
+
+                </div>
+                <div style={{ maxWidth: 400,  maxHeight: 400, display: 'flex', flexDirection: 'column', padding: 10 }}>
+                    <div style={{ display: 'flex', }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                        <h2 style={{marginLeft:20,fontSize:20 , fontFamily:'Cinzel'}}>{data.location}</h2>
+                    </div>
+                    
+                </div>
+            </section>
+            <Testimonials/>
+            <Footer/>
+
+        </>
+    )
 }
 
 export default page

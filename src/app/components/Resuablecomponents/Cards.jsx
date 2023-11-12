@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from "next/image";
+import Link from 'next/link';
 const Cards = (props) => {
     console.log("aaaa",props)
     return (
         <div className="lg:flex relative">
-            <a className="event_item__wrapper" draggable="false">
+            <Link href={`/banquet/${props._id}`} className="event_item__wrapper" draggable="false">
                 
                 <Image
                     src={"/assets/hero/homepage_hero_1280.jpg"}
@@ -65,7 +66,7 @@ const Cards = (props) => {
                         <span className="tracking-[3.6px] leading-6 text-white text-lg w-full h-full font-[Cinzel] font-extralight">{props.name}</span>
                     </div>
                 </div>
-            </a>
+            </Link>
         </div>
     )
 }

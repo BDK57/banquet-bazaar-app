@@ -8,6 +8,9 @@ const HallSchema = new mongoose.Schema({
     Description: {
         type: String,
     },
+    location:{
+        type:String
+    },
     vendorid:{
         type: Schema.Types.ObjectId, 
         ref: 'vendor' 

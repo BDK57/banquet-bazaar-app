@@ -9,11 +9,10 @@ import { PremiumHall } from '@/helpers/Hallsdata'
 export default function Home() {
   return (
     <>
-    {/* <Header/> */}
     <HeroSection/>
     <Collectionhall PremiumHall = {PremiumHall}/>
-    <Testimonials/>
-    <Booksection/>
+    {/* <Testimonials/> */}
+    {/* <Booksection/> */}
     <Footer/>
     </>
   )

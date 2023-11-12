@@ -39,7 +39,6 @@ function HeroSection() {
             <h1 className={heroStyle.hero__title}>Banquet Bazzar</h1>
             <h3 className={heroStyle.hero__desk}></h3>
             <div className={heroStyle.hero__since_wrapper}>
-                {/* <h4 className={heroStyle.hero__since}>since 2018</h4> */}
                 <div className={heroStyle.hero__since_stars}>
                     <img src="/icons/Star_Icon.svg" alt="star" className=" ls-is-cached lazyloaded" width={8} height={7} />
                     <img src="/icons/Star_Icon.svg" alt="star" className=" ls-is-cached lazyloaded" width={8} height={7} />

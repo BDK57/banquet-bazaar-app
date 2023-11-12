@@ -25,10 +25,10 @@ const Header = () => {
       <section className="container">
         <nav className="border-gray-200 dark:bg-gray-900 dark:border-gray-700 lg:w-full lg:mx-auto lg:relative">
           <div className="flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="#" className="flex items-center w-14 md:w-16 lg:w-10">
+            <Link href={'/'} className="flex items-center w-14 md:w-16 lg:w-10">
               <img src="/logos/Hero_Standard_AuroraLogo.svg" alt="Logo" />
               {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">BDK</span> */}
-            </a>
+            </Link>
             <button
               data-collapse-toggle="navbar-dropdown"
               type="button"

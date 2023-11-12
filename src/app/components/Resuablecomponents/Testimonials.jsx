@@ -50,10 +50,7 @@ mb-5"
                     <Image src={"/icons/star-1.svg"} width={20} height={20}></Image>
                     <Image src={"/icons/star-1.svg"} width={20} height={20}></Image>
                     <Image src={"/icons/star-1.svg"} width={20} height={20}></Image>
-                    {/* <span className="material-icons gold900-text">star</span>
-                    <span className="material-icons gold900-text">star</span>
-                    <span className="material-icons gold900-text">star</span>
-                    <span className="material-icons gold900-text">star</span> */}
+                   
                 </div>
                 <div
                     className="body tracking-[0.16px] text-sm
@@ -464,9 +461,7 @@ text-[#000]"
 
         </div>
     </div>
-    {/* <a className="button venue-btn md:w-3/5" href="/venue">
-        View More
-    </a> */}
+    
 </section>
   )
 }

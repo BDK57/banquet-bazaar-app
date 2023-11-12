@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 import Hall from '@/models/HallMode';
 export const POST = async (req) => {
     connect();
-    const {vendorid,name,Description,capacity,Price,coverimage,galleryImage} = await req.json();
+    const {vendorid,name,Description,capacity,Price,coverimage,galleryImage , location} = await req.json();
 
     try {
         
@@ -22,13 +22,13 @@ export const POST = async (req) => {
             Price:Price,
             coverimage:coverimage,
             galleryImage:galleryImage,
+            location:location
         })
        
         console.log("Hall data is",newhall)
         if(newhall){
                 return NextResponse.json({status:200,msg:"Hall has beeen Added"})
         }
-
         return NextResponse.json({status:400,msg:"Hall not Added"})
 
         
