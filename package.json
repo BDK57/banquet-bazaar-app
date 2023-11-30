@@ -18,6 +18,7 @@
     "email-deep-validator": "^3.3.0",
     "firebase": "^10.5.0",
     "jsonwebtoken": "^9.0.2",
+    "moment": "^2.29.4",
     "mongoose": "^7.5.4",
     "next": "13.5.4",
     "next-auth": "^4.23.2",
