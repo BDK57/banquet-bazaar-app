@@ -1,14 +1,49 @@
 "use client";
 import React, { useState } from "react";
 import formstyle from "@/app/components/vendor/vendorform.module.css";
+import axios from "axios";
+import { ToastSuccess } from "../toasters/taoster";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { login, vendordata } from "@/redux/userslice/userslice";
 function RegisterVendor(props) {
   console.log("props", props);
-  const [vendor, setvendor] = useState({
-    name: props.userdata.displayName,
-    email: props.userdata.email,
-    phone: "",
-    Address: "",
-  });
+
+  const [name , setname] = useState(props?.userdata?.username)
+  const [email,setemail] = useState(props?.userdata?.email)
+  const[phone , setphone] = useState('')
+  const[Address , setAddress] = useState('')
+  let route = useRouter();
+  let dispatch = useDispatch();
+
+
+  const registerToVendor = async (e) => {
+    e.preventDefault();
+    const data = {
+      username:name,
+      email:email,
+      phone:phone,
+      Address:Address,
+      userid:props?.userdata?._id
+    }
+    
+    console.log("data",data)
+    console.log("data iss",data)
+    const res = await axios.post('/api/Vendor/register',data)
+    console.log("res",res.data)
+    if(res.data.status == 200){
+      ToastSuccess(res.data.msg)
+      const user = await axios.get('/api/users/currentUser')
+      console.log("user",user)
+      dispatch(vendordata(data))
+      dispatch(login(user.data.data))
+      props.Handleclosemodal();
+      route.push('/')
+      
+    }
+
+  }
+
 
   return (
     <section className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
@@ -29,8 +64,8 @@ function RegisterVendor(props) {
               id="username"
               type="text"
               placeholder="Username"
-              value={vendor.name}
-              onChange={(e) => { }}
+              value={name}
+              onChange={(e) => { setname(e.target.value)}}
             />
           </div>
           <div className={`${formstyle.row}`}>
@@ -42,8 +77,8 @@ function RegisterVendor(props) {
               id="email"
               type="text"
               placeholder="Enter Your email"
-              value={vendor.email}
-              onChange={(e) => { }}
+              value={email}
+              onChange={(e) => { setemail(e.target.value)}}
             />
           </div>
           <div className={`${formstyle.row}`}>
@@ -55,9 +90,9 @@ function RegisterVendor(props) {
               id="Address"
               type="text"
               placeholder="Adress"
-              value={vendor.Address}
+              value={Address}
               multiple
-              onChange={(e) => { }}
+              onChange={(e) => { setAddress(e.target.value)}}
             />
           </div>
           <div className={`${formstyle.row}`}>
@@ -69,13 +104,13 @@ function RegisterVendor(props) {
               id="phone"
               type="text"
               placeholder="phone"
-              value={vendor.phone}
-              onChange={(e) => { }}
+              value={phone}
+              onChange={(e) => { setphone(e.target.value)}}
             />
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
-            <button className="custom-btn" style={{ width: '50%', alignContent: 'center' }}>
+            <button onClick={registerToVendor} className="custom-btn" style={{ width: '50%', alignContent: 'center' }}>
               Register
             </button>
           </div>

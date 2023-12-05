@@ -16,6 +16,9 @@ const VendorSchema = new mongoose.Schema({
     },
     phone:{
         type:Number
+    },
+    Address:{
+        type:String
     }
 })
 

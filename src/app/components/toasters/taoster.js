@@ -6,11 +6,11 @@ export const ToastSuccess = (title) => {
         style: {
             // border: '1px solid #F48CAD',
             padding: '16px',
-            color: '#F48CAD',
+            color: '#d5af80',
             backgroundColor: '#fff',
         },
         iconTheme: {
-            primary: '#F48CAD',
+            primary: '#d5af80',
             secondary: '#FFFAEE',
         },
     })
@@ -21,11 +21,11 @@ export const ToastError = (title) => {
         style: {
             // border: '1px solid #F48CAD',
             padding: '16px',
-            color: '#F48CAD',
+            color: '#d5af80',
             backgroundColor: '#fff',
         },
         iconTheme: {
-            primary: '#F48CAD',
+            primary: '#d5af80',
             secondary: '#FFFAEE',
         },
     })

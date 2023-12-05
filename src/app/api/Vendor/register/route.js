@@ -38,5 +38,6 @@ export const POST = async (req) => {
         
     } catch (error) {
         console.log(error)
+        return NextResponse.json({status:400,msg:"Vendor not Added"})
     }
 } 

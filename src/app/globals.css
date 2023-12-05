@@ -14,8 +14,13 @@ body {
   letter-spacing: 0.01071em;
 }
 
+.custom-box-shadow {
+  box-shadow: 8px 10px 14px -7px rgba(0, 0, 0, 0.66);
+  -webkit-box-shadow: 8px 10px 14px -7px rgba(0, 0, 0, 0.66);
+  -moz-box-shadow: 8px 10px 14px -7px rgba(0, 0, 0, 0.66);
+}
 
-.main{
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,8 +31,9 @@ body {
 #container {
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-    0 10px 10px rgba(0, 0, 0, 0.22);
+  /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.22); */
+
   position: relative;
   overflow: hidden;
   width: 80%;
@@ -38,7 +44,8 @@ body {
 .custom-btn {
   border-radius: 20px;
   border: 1px solid #ff709d;
-  background-color: #F48CAD;
+  background-color: #d5af80;
+  /* background-color: F48CAD; */
   color: #FFFFFF;
   font-size: 12px;
   font-weight: bold;
@@ -57,7 +64,8 @@ body {
 }
 
 .btn-15 {
-  background-color: #F48CAD;
+  /* background-color: #F48CAD; */
+  background-color: #d5af80;
   border: none;
   z-index: 1;
 }
@@ -71,7 +79,8 @@ body {
   right: 0;
   z-index: -1;
   background-color: #fff;
-  color: #F48CAD;
+  /* color: #F48CAD; */
+  color: #d5af80;
   border-radius: 20px;
   box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
     7px 7px 20px 0px rgba(0, 0, 0, .1),
@@ -81,7 +90,8 @@ body {
 
 .btn-15:hover {
   /* color: #fff; */
-  color: #F48CAD;
+  /* color: #F48CAD; */
+  color: #d5af80;
 }
 
 .btn-15:hover:after {
@@ -120,8 +130,9 @@ button.ghost {
 
 
 .overlay {
-  
-  background: url('https://s3.amazonaws.com/images-aarz/uploads/properties/2017/6/24-marla-banquet-hall-for-sale-44506-image-0-actual.jpg');
+
+  /* background: url('https://s3.amazonaws.com/images-aarz/uploads/properties/2017/6/24-marla-banquet-hall-for-sale-44506-image-0-actual.jpg'); */
+  background: url('../../public/assets/login/bgPic.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -130,14 +141,74 @@ button.ghost {
   left: -100%;
   height: 100%;
   width: 200%;
-  opacity: 1;
+  /* opacity: 1; */
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
-  
+  /* filter: brightness(0.5); */
+
 }
 
 
-.forgetpassform{
+
+
+.menueProfile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: absolute;
+  top: 65px;
+  background-color: white;
+  z-index: 999;
+  right: 30px;
+  padding: 10px;
+  width: 200px;
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  border: 7px solid #f3f3f3;
+  border-top: 7px solid hsl(30, 90%, 68%);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.singleitem {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.menuitemtext {
+  padding-left: 20px;
+}
+
+.forgetpassform {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
@@ -259,13 +330,13 @@ button.ghost {
 }
 
 
-input {
+/* input {
   background-color: #eee;
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
   width: 70%;
-}
+} */
 
 .bg img {
   height: 100%;
@@ -320,4 +391,61 @@ li {
 }
 
 
+/* GLOBLE CUSTOM ANT DESIGN */
+:where(.css-dev-only-do-not-override-6j9yrn).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: #d5af80;
+  border-color: #d5af80;
+}
 
+:where(.css-dev-only-do-not-override-6j9yrn).ant-btn-default:not(:disabled):not(.ant-btn-disabled) {
+  padding: 4px 6px;
+  font-family: 'Cinzel';
+}
+
+:where(.css-dev-only-do-not-override-6j9yrn).ant-btn-primary {
+  color: #fff;
+  background: #d5af80;
+  box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+}
+
+:where(.css-dev-only-do-not-override-6j9yrn).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+  color: #d5af80;
+  border-color: #d5af80;
+  background: none;
+}
+
+.ant-drawer-title {
+  font-family: 'Cinzel';
+}
+
+/* GLOBLE CUSTOM ANT DESIGN END */
+:where(.css-dev-only-do-not-override-6j9yrn).ant-btn-default.btn_hover:not(:disabled):not(.ant-btn-disabled):hover {
+  color: #d5af80;
+  border-color: #d5af80;
+}
+
+:where(.css-dev-only-do-not-override-6j9yrn).ant-btn-default.btn_hover:not(:disabled):not(.ant-btn-disabled) {
+  padding: 4px 6px;
+  font-family: 'Cinzel';
+}
+
+.custom_confirm_delete :where(.css-dev-only-do-not-override-6j9yrn).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+  color: #d5af80;
+  border-color: #d5af80;
+}
+
+.ant-drawer-body input {
+  border: 1px solid lightgrey;
+}
+
+
+
+.social:hover {
+  background-color: #d5af80;
+  border: 1px solid white;
+}
+
+.social:hover i {
+  /* background-color: #d5af80; */
+  color: white;
+}

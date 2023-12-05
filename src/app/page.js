@@ -10,9 +10,7 @@ export default function Home() {
   return (
     <>
     <HeroSection/>
-    <Collectionhall PremiumHall = {PremiumHall}/>
-    {/* <Testimonials/> */}
-    {/* <Booksection/> */}
+    <Collectionhall/>
     <Footer/>
     </>
   )

@@ -15,21 +15,24 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import LoadingScreen from '../Customloader/loading'
 function Collectionhall(props) {
-  console.log(props)
+  
   useEffect(() => {
     GetAllHalls();
   }, [])
 
   const [halls, sethalls] = useState([])
+  const [isloading , setisloadin] = useState(false)
   let dispatch = useDispatch();
 
   const GetAllHalls = async () => {
+    setisloadin(true)
     const res = await axios.get('/api/Vendor/Hall');
-    console.log("resss", res.data)
+    setisloadin(false)
+
     if (res.data) {
       sethalls(res.data.data)
-      console.log(res.data.data)
       dispatch(addbanquetdata(res.data.data))
     }
   }
@@ -37,6 +40,7 @@ function Collectionhall(props) {
 
 
   return (
+    <>
     <section className={`${heroStyle.bannerContainer} py-10 ${heroStyle.outlineContent} container lg:relative lg:pt-10 lg:pb-16    lg:after:content-['']
     lg:after:block
     lg:after:w-2/5
@@ -105,7 +109,8 @@ function Collectionhall(props) {
                     },
                 }}
             >
-
+            
+            {isloading && <LoadingScreen/>}
                 {
                     halls.map((item) => {
                         return(
@@ -284,7 +289,8 @@ function Collectionhall(props) {
                 explore more
             </Link>
         </section>
-
+    </>
+        
   )
 }
 

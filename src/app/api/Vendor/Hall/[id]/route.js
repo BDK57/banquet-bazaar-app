@@ -23,6 +23,7 @@ export const PATCH = async (request,{params}) => {
     await connect();
     const {name,Description,capacity,Price,coverimage,galleryImage} = await request.json();
     const existingHall = await Hall.findById(params.id)
+    console.log(existingHall)
     if(!existingHall){
         return new NextResponse.json({msg:"No hall has been found",status:404})
     }
@@ -37,10 +38,10 @@ export const PATCH = async (request,{params}) => {
 
     },{new:true})
     if(updatedudata){
-        return new NextResponse.json({msg:"Hall data has been Updated",status:200})
+        return NextResponse.json({msg:"Hall data has been Updated",status:200})
     }
 
-    return new NextResponse.json({msg:"Hall data not Updated Try Agin!",status:404})
+    return NextResponse.json({msg:"Hall data not Updated Try Agin!",status:404})
    
   } catch (error) {
     return new NextResponse.json({error:"Internal Server Error",status:500})
@@ -51,14 +52,16 @@ export const PATCH = async (request,{params}) => {
 
 export const DELETE = async (request, { params }) => {
     try {
-        console.log(params.id)
+        console.log("delete",params.id)
         await connect()
-        const data = await Hall.findByIdAndRemove(params.id);
+        const data = await Hall.findByIdAndDelete(params.id);
+        console.log("data",data)
         if(data){
-            return new NextResponse.json({msg:"Hall has been deleted successfully",status:200});
+            return NextResponse.json({msg:"Hall has been deleted successfully",status:200});
         }
-        return new NextResponse.json({msg:"Hall not Found",status:200});
+        return NextResponse.json({msg:"Hall not Found",status:200});
     } catch (error) {
-        return new NextResponse.json({Error:"Error deleting prompt",status: 500});
+        console.log("err",error)
+        return NextResponse.json({Error:"Error deleting prompt",status: 500});
     }
 };

@@ -12,7 +12,6 @@ const banquetslice = createSlice({
     initialState:initiallstate,
     reducers:{
         addbanquetdata(state,action){
-            console.log("action",action.payload)
             state.banquetdata = action.payload
         }
     }

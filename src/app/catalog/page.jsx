@@ -1,20 +1,10 @@
 'use client'
 import React, { useState } from "react";
-import Header from "../components/Resuablecomponents/Header";
 import BannerSection from "../components/Resuablecomponents/BannerSection";
 import HeroSection from "../components/Resuablecomponents/HeroSection";
-import data from "../constant/data";
 import Cards from "../components/Resuablecomponents/Cards";
 import { useSelector } from "react-redux";
-import Footer from "../components/Resuablecomponents/Footer";
-import { Listbox } from "@headlessui/react";
-const people = [
-    { id: 1, name: 'Durward Reynolds', unavailable: false },
-    { id: 2, name: 'Kenton Towne', unavailable: false },
-    { id: 3, name: 'Therese Wunsch', unavailable: false },
-    { id: 4, name: 'Benedict Kessler', unavailable: true },
-    { id: 5, name: 'Katelyn Rohan', unavailable: false },
-]
+
 const page = () => {
 
     const bdata = useSelector((state) => state.banquet?.banquetdata)
@@ -37,6 +27,8 @@ const page = () => {
         }
     }
 
+
+
     return (
         <>
 
@@ -58,7 +50,7 @@ const page = () => {
                                     </div>
                                 </div>
                             </div>
-                               
+
                             <div class="flex justify-center"><button class="p-2 border w-1/4 rounded-md bg-[#d5af80] text-white">Search</button></div>
                         </div>
                     </div>
@@ -69,11 +61,15 @@ const page = () => {
             <section className="bg-white dark:bg-gray-900">
                 <div className="container px-6  mx-auto">
                     <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 lg:grid-cols-3 mb-5">
-                        {filterhalls?.map((e, ind) => {
-                            return (
-                                <Cards {...e} />
-                            )
-                        })}
+                        {filterhalls?.length > 0 ?
+
+                            <Cards filterhalls={filterhalls} isdelete={false}  />
+
+                            : (
+                                <div>
+                                    sdklnf
+                                </div>
+                            )}
                     </div>
                 </div>
             </section>
