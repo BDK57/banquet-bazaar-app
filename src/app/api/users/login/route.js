@@ -14,9 +14,13 @@ export async function POST(request) {
         // check if the user already exists
         const user = await User.findOne({ email });
 
+        
+
         if (!user || user == null || user == undefined) {
             return NextResponse.json({status:400,error:"User doesnot exists"})
         }
+
+        if(!user.isVerified) return NextResponse.json({status:401,error:'email is not verified. Verify the link sent to your email!!!'})
 
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) {

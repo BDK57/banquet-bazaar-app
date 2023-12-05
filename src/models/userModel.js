@@ -54,7 +54,7 @@ userSchema.methods.getResetToken = function () {
     .update(resetToken)
     .digest("hex");
 
-  const verifyTokenExpiry = Date.now() + 15 * 6 * 1000;
+  const verifyTokenExpiry = Date.now() + 15 * 60 * 1000;
 
   return { resetToken, verifyToken, verifyTokenExpiry };
 };

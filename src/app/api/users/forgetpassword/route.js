@@ -21,7 +21,7 @@ export async function POST(request) {
           .update(resetToken)
           .digest("hex");
       
-        const verifyTokenExpiry = Date.now() + 15 * 6 * 1000;
+        const verifyTokenExpiry = Date.now() + 15 * 60 * 1000;
        
         const url = `http://localhost:3000/user/reset-password/${resetToken}`;
     
