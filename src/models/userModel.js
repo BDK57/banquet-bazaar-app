@@ -2,8 +2,6 @@ import mongoose from "mongoose";
 import moment from "moment";
 const crypto = require("crypto");
 
-
-
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -26,6 +24,12 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  
+  favourites:[{
+    type:String,
+    unique:true,
+    required:true
+  }],
   usertype: {
     type: String,
     default: "user",
@@ -38,12 +42,12 @@ const userSchema = new mongoose.Schema({
   },
   createdTime: {
     type: Date,
-    default: ()=>moment(),
+    default: () => moment(),
   },
   updatedTime: {
     type: Date,
-    default: ()=>moment(),
-  },
+    default: () => moment(),
+  }
 });
 
 userSchema.methods.getResetToken = function () {
