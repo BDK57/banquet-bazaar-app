@@ -33,6 +33,7 @@ export async function POST(request) {
                 email: email,
                 password: accessToken,
                 isSocialUser: true,
+                isVerified: true,
             });
         }
         const tokenData = {
