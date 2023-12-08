@@ -81,10 +81,16 @@ const Page = () => {
                     if ((CheckPassword(user.password))) {
                         const response = await axios.post("/api/users/login", user);
                         if (response.status === 200) {
-                            console.log("res", response.data.user)
-                            dispatch(login(response.data.user))
-                            ToastSuccess('Log in')
-                            router.push("/");
+                            const responseData = response.data;
+                            if (responseData.user && responseData.user.isVerified) {
+                                console.log("Logged in user:", responseData.user);
+                                dispatch(login(responseData.user));
+                                ToastSuccess('Log in');
+                                router.push("/");
+                            }
+                            else {
+                                ToastError("Email is not verified. Verify the link sent to your email!!!");
+                            }
                         }
                         else {
                             ToastError(response.data.error)
