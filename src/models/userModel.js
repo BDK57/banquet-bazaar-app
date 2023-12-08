@@ -25,11 +25,6 @@ const userSchema = new mongoose.Schema({
     default: false,
   },
   
-  favourites:[{
-    type:String,
-    unique:true,
-    required:true
-  }],
   usertype: {
     type: String,
     default: "user",
