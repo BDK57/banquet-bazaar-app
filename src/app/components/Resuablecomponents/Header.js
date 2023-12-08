@@ -40,7 +40,7 @@ const Header = () => {
 
 
   return (
-    <div className="flex bg-black	 justify-center	items-center">
+    <div className="flex dark:bg-gray-900	 justify-center	items-center">
       <section className="container">
         <nav className="border-gray-200 dark:bg-gray-900 dark:border-gray-700 lg:w-full lg:mx-auto lg:relative">
           <div className="flex flex-wrap items-center justify-between mx-auto p-4">

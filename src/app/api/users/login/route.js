@@ -11,19 +11,21 @@ export async function POST(request) {
         const body = await request.json();
 
         const { email, password } = body;
-
+        // check if the user already exists
         const user = await User.findOne({ email });
-        console.log("user",user)
+
+        
+
         if (!user || user == null || user == undefined) {
             return NextResponse.json({status:400,error:"User doesnot exists"})
         }
+
+        if(!user.isVerified) return NextResponse.json({status:401,error:'email is not verified. Verify the link sent to your email!!!'})
 
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) {
             return NextResponse.json({status:401,error:"Invalid credentials"})
         }
-
-        
         
         const tokenData = {
             id: user._id,
@@ -35,14 +37,13 @@ export async function POST(request) {
         });
         const response = NextResponse.json({
             message: "Logged in successfully",
-            status: 200,
-            user
-    });
-
+            success: true,
+            status:200,
+        });
         response.cookies.set("token", token, { httpOnly: true });
         return response;
     } catch (error) {
         console.log(error);
-        return NextResponse.json({ error: error.message ,status: 500 });
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }

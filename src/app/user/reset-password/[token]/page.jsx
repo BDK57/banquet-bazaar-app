@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { BeatLoader } from "react-spinners";
-// import { ToastError, ToastSuccess } from "../components/toasters/taoster";
 import { ToastError, ToastSuccess } from "@/app/components/toasters/taoster";
 import { CheckPassword } from "@/helpers/validation/validator";
 import axios from "axios";
