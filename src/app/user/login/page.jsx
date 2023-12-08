@@ -64,13 +64,6 @@ const Page = () => {
         })
     }
 
-
-
-
-
-
-
-
     const onSubmit = async (e) => {
 
         setLoading(true);
@@ -78,44 +71,43 @@ const Page = () => {
         try {
             if (user.email.length > 0 || user.password.length > 0) {
                 if (ValidateEmail(user.email)) {
-                    if ((CheckPassword(user.password))) {
+                    if (CheckPassword(user.password)) {
                         const response = await axios.post("/api/users/login", user);
+                        const responseData = response.data;
+        
                         if (response.status === 200) {
-                            console.log("res", response.data.user)
-                            dispatch(login(response.data.user))
-                            ToastSuccess('Log in')
-                            router.push("/");
+                            if (responseData.user) {
+                                if (responseData.user.isVerified) {
+                                    console.log("Logged in user:", responseData.user);
+                                    dispatch(login(responseData.user));
+                                    ToastSuccess('Log in');
+                                    router.push("/");
+                                } else {
+                                    ToastError("Email is not verified. Verify the link sent to your email!!!");
+                                }
+                            } else {
+                                // Handle other cases (e.g., incorrect password)
+                                ToastError(responseData.error);
+                            }
+                        } else {
+                            ToastError("Unexpected response status: " + response.status);
                         }
-                        else {
-                            ToastError(response.data.error)
-                        }
+                    } else {
+                        ToastError("Enter a valid password format.");
                     }
-                    else {
-
-                        ToastError("Enter Valid Format Password")
-                    }
+                } else {
+                    ToastError("Please enter a valid email address.");
                 }
-                else {
-
-                    ToastError("Please Enter Valid Email Address")
-                }
+            } else {
+                ToastError("Fill out the given form completely.");
             }
-
-            else {
-                ToastError("Fill The Given Form")
-            }
-        }
-
-        catch (error) {
-            ToastError("Error: " + error)
+        } catch (error) {
+            console.error("Error during login:", error);
+            ToastError("An unexpected error occurred. Please try again.");
         } finally {
             setLoading(false);
         }
     };
-
-
-
-
 
 
 
@@ -135,7 +127,7 @@ const Page = () => {
                             <input style={{padding:10,borderWidth:1 , marginBottom:20,borderRadius:20}} type="email" placeholder="Email" value={user.email} onChange={(e) => {
                                 setUser({ ...user, email: e.target.value })
                             }} />
-                            <input style={{padding:10,borderWidth:1 , marginBottom:20,borderRadius:20}} type="password" placeholder="Password" value={user.password} onChange={(e) => {
+                            <input style={{padding:10,borderWidth:1 , marginBottom:20,borderRadius:20,fontFamily: 'Open Sans, sans-serif'}} type="password" placeholder="Password" value={user.password} onChange={(e) => {
                                 setUser({ ...user, password: e.target.value })
                             }} />
                             <Link href={'/user/forgetpassword'} className="mt-5 mb-5" >Forgot your password?</Link>
