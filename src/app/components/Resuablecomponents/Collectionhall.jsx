@@ -5,11 +5,10 @@ import { useEffect, useState } from 'react'
 import HallCss from '@/app/components/cssmodules/Collectionhall.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useDispatch } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { addbanquetdata } from '@/redux/banquetSlice/banquetslice'
 import heroStyle from '@/app/hero.module.css';
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -24,18 +23,54 @@ function Collectionhall(props) {
 
   const [halls, sethalls] = useState([])
   const [isloading , setisloadin] = useState(false)
-  let dispatch = useDispatch();
+    let dispatch = useDispatch();
+    const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+    const userType = useSelector((state) => state.user.userdata?.usertype);
+    const isUserLoggedIn = () => {
+        // Check the isAuthenticated state in your Redux store
+        return isAuthenticated;
+      };
 
-  const GetAllHalls = async () => {
-    setisloadin(true)
-    const res = await axios.get('/api/Vendor/Hall');
-    setisloadin(false)
-
-    if (res.data) {
-      sethalls(res.data.data)
-      dispatch(addbanquetdata(res.data.data))
-    }
-  }
+      const GetAllHalls = async () => {
+        try {
+          setisloadin(true);
+      
+          const res = await axios.get('/api/Vendor/Hall');
+          const id = await localStorage.getItem('vendorid');
+          console.log("vendor id", id);
+      
+          if (res.data) {
+            console.log("data is", res.data.data);
+      
+            if (isUserLoggedIn()) {
+              if (userType === 'vendor') {
+                // User is a vendor, proceed to display other halls not that vendor
+                console.log("User is logged in as a vendor. Show vendor's halls.");
+                const userHalls = res.data.data.filter((item) => item.vendorid !== id);
+                sethalls(userHalls);
+                dispatch(addbanquetdata(userHalls));
+              } else {
+                // User is not a vendor, handle the case accordingly show all halls
+                console.log("User is logged in but not a vendor. Do not show anything.");
+                sethalls([]);
+                dispatch(addbanquetdata([]));
+              }
+            } else {
+              // User is not logged in, fetch and display all halls
+              console.log("Public View");
+              sethalls(res.data.data);
+              dispatch(addbanquetdata(res.data.data));
+            }
+          }
+      
+          setisloadin(false);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          setisloadin(false);
+        }
+      };
+      
+      
 
 
 
