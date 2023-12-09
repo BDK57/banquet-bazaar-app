@@ -31,7 +31,7 @@ const Page = () => {
                 user.email.length > 0
             ) {
                 if (ValidateEmail(user.email)) {
-                    const res = await axios.post('api/users/forgetpassword',user)
+                    const res = await axios.post('/api/users/forgetpassword',user)
                     if(res.status == 200){
                         ToastSuccess(res.data.message)
                     }
