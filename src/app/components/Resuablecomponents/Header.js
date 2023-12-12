@@ -8,10 +8,12 @@ import { ToastError, ToastSuccess } from "../toasters/taoster";
 import { usePathname, useRouter } from 'next/navigation';
 import Image from "next/image";
 import vedorprofile from '../../../../vendor.png'
+import { logoutaction } from "@/redux/userslice/userslice";
 const Header = () => {
 
 
   const [toogleMenu, settoogleMenu] = useState(false);
+  const[loading , setloading] = useState(false);
   const userdata = useSelector((state) => state.user);
   const [show, setshow] = useState(false);
   const [showprofile, setprofile] = useState(false)
@@ -25,17 +27,19 @@ const Header = () => {
 
   const logout = async () => {
     try {
-
       const res = await axios.get("/api/users/logout")
       console.log("res" + res)
-      // dispatch(logout())
+      dispatch(logoutaction())
       ToastSuccess('Logout Successfully')
       router.push('/')
-
-
     } catch (error) {
       ToastError("Error: " + error.response)
     }
+  }
+
+  const NavigateHandle = () => {
+    setprofile(!showprofile)
+    router.push('/dashboard')
   }
 
 
@@ -133,7 +137,7 @@ const Header = () => {
                     {
                       showprofile && <div className="menueProfile">
 
-                        <li onClick={() => router.push('/dashboard')} className="singleitem">
+                        <li onClick={NavigateHandle} className="singleitem">
                           <svg
                             width="20"
                             height="20"

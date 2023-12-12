@@ -31,7 +31,9 @@ const Page = () => {
                 user.email.length > 0
             ) {
                 if (ValidateEmail(user.email)) {
-                    const res = await axios.post('api/users/forgetpassword',user)
+                    console.log("email is",user)
+                    const res = await axios.post("/api/users/forgetpassword",user)
+                    console.log("emai",res)
                     if(res.status == 200){
                         ToastSuccess(res.data.message)
                     }
@@ -51,6 +53,7 @@ const Page = () => {
         }
 
         catch (error) {
+            console.log("error",error)
             ToastError("Error: " + error)
         } finally {
             setLoading(false);
@@ -62,10 +65,10 @@ const Page = () => {
     return (
         <>
             <div className="main">
-            <div className="forgetpassform">
-                    <form action="#">
-                        <h1 className="text-2xl mb-5">Forgot Password</h1>
-                        <input type="email" placeholder="Email" value={user.email} onChange={(e) => {
+            <div className="forgetpassform" >
+                    <form action="#" style={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+                        <h1 className="text-2xl mb-5 text-center">Forgot Password</h1>
+                        <input style={{ padding: 10, borderWidth: 1, marginBottom: 20, borderRadius: 20 , marginTop:20 }} type="email" placeholder="Email" value={user.email} onChange={(e) => {
                             setUser({ ...user, email: e.target.value })
                     }} />
                     <button className="custom-btn btn-15 h-10 mt-5" onClick={onSubmit}

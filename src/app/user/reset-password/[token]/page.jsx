@@ -28,7 +28,7 @@ const Page = ({ params }) => {
                         const res = await axios.put(`http://localhost:3000/api/users/resetpassword/${params.token}`, user)
                         if (res.status == 200) {
                             ToastSuccess(res.data.message)
-                            router.push('/login')
+                            router.push('/user/login')
                         }
                         else {
                             ToastSuccess(res.data.message)
@@ -59,12 +59,12 @@ const Page = ({ params }) => {
             <div className="main">
                 <div className="forgetpassform">
 
-                    <form action="#">
-                        <h1 className="text-3xl mb-5">Reset Password</h1>
-                        <input type="password" placeholder="Enter Password" value={user.password} onChange={(e) => {
+                    <form action="#" style={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+                        <h1 className="text-3xl mb-5 ">Reset Password</h1>
+                        <input style={{ padding: 10, borderWidth: 1, marginBottom: 20, borderRadius: 20 , marginTop:20 }} type="password" placeholder="Enter Password" value={user.password} onChange={(e) => {
                             setUser({ ...user, password: e.target.value })
                         }} />
-                        <input type="password" placeholder="Enter Confirm Password" value={user.confirmpassword} onChange={(e) => {
+                        <input style={{ padding: 10, borderWidth: 1, marginBottom: 20, borderRadius: 20 , marginTop:20 }}   type="password" placeholder="Enter Confirm Password" value={user.confirmpassword} onChange={(e) => {
                             setUser({ ...user, confirmpassword: e.target.value })
                         }} />
                         <button className="custom-btn btn-15 h-10 mt-5" onClick={onSubmit}>

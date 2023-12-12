@@ -1,10 +1,10 @@
 'use client'
 import Event from '@/app/components/Resuablecomponents/Event'
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import heroStyle from '@/app/hero.module.css';
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { useRouter } from 'next/navigation';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -12,14 +12,47 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Testimonials from '@/app/components/Resuablecomponents/Testimonials';
 import Footer from '@/app/components/Resuablecomponents/Footer';
+import { HeartFilled, MergeCellsOutlined } from '@ant-design/icons';
+import { ToastError, ToastSuccess } from '@/app/components/toasters/taoster';
+import axios from 'axios';
+import { favoritesHall, login } from '@/redux/userslice/userslice';
 function page({ params }) {
-    console.log(params)
+
+
     const data = useSelector((state) => state.banquet?.banquetdata.find((item) => item._id === params.id))
-    console.log("data is", data)
+    const userdata = useSelector((state) => state.user);
+
+    let dispatch = useDispatch();
+
+    const addtoFavoritesApi = async () => {
+        console.log("userdata",userdata)
+        if(userdata.userdata !== ''){
+                const response = await axios.post(`/api/favHalls/${params.id}`);
+                console.log("repose",response)
+                if(response.data.status == 200){
+                    ToastSuccess(response.data.message);
+                    dispatch(favoritesHall(params.id))
+                    dispatch(login(response.data.data))
+                }
+                else{
+                    ToastError(response.data.message)
+                }
+            
+        }
+        else{
+         ToastError("You have to Register Yourself For this Operation");
+        }
+    }
+
+
+
     return (
         <>
+            <div onClick={addtoFavoritesApi} className='fixed right-2 bottom-0 z-40 mt-5 mb-5 hover:shadow-form rounded-md bg-white pt-1 pb-1 px-2 text-center text-base font-semibold text-white outline-none hover:bg-transparent border   hover:border-mainColor hover:text-mainColor transition-all' style={{ boxShadow: "0px 0px 13px 2px rgba(0,0,0,0.3)" }}>
+                <HeartFilled className="text-mainColor text-xl" />
+            </div>
             <section className={`${heroStyle.hero__section} relative h-full`}>
-                
+
                 <img
                     src={"/assets/hero/homepage_hero_375.webp"}
                     className=" sm:hidden max-w-[100%]  h-auto hero__image"
@@ -103,19 +136,10 @@ function page({ params }) {
                     {data.Description}
 
                 </div>
-                <div style={{ maxWidth: 400,  maxHeight: 400, display: 'flex', flexDirection: 'column', padding: 10 }}>
-                    <div style={{ display: 'flex', }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                        </svg>
-                        <h2 style={{marginLeft:20,fontSize:20 , fontFamily:'Cinzel'}}>{data.location}</h2>
-                    </div>
-                    
-                </div>
+               
             </section>
-            <Testimonials/>
-            <Footer/>
+            <Testimonials />
+            <Footer />
 
         </>
     )

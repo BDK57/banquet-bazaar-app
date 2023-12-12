@@ -33,9 +33,9 @@ function RegisterVendor(props) {
     console.log("res",res.data)
     if(res.data.status == 200){
       ToastSuccess(res.data.msg)
+      const id = await localStorage.setItem('vendorid',res.data.data._id);
       const user = await axios.get('/api/users/currentUser')
       console.log("user",user)
-      dispatch(vendordata(data))
       dispatch(login(user.data.data))
       props.Handleclosemodal();
       route.push('/')

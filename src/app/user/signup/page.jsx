@@ -118,17 +118,17 @@ const Page = () => {
                     </div>
                     <div className="form-container sign-in-container">
                         <form className="globolform" action="#">
-                            <h1>Sign in</h1>
+                            <h1 className="text-3xl">Sign in</h1>
                             <div className="social-container">
                                 <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
                                 <a href="#" className="social"><i className="fab fa-google-plus-g" /></a>
                                 <a href="#" className="social"><i className="fab fa-linkedin-in" /></a>
                             </div>
-                            <span>or use your account</span>
-                            <input type="email" placeholder="Email" value={user.email} onChange={(e) => {
+                            <span className="text-lg mt-2 mb-5">or use your account</span>
+                            <input style={{ padding: 10, borderWidth: 1, marginBottom: 20, borderRadius: 20 , marginTop:20 }} type="email" placeholder="Email" value={user.email} onChange={(e) => {
                                 setUser({ ...user, email: e.target.value })
                             }} />
-                            <input type="password" placeholder="Password" value={user.password} onChange={(e) => {
+                            <input style={{ padding: 10, borderWidth: 1, marginBottom: 20, borderRadius: 20 }} type="password" placeholder="Password" value={user.password} onChange={(e) => {
                                 setUser({ ...user, password: e.target.value })
                             }} />
                             <a href="#">Forgot your password?</a>

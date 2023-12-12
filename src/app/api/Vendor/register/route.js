@@ -29,11 +29,11 @@ export const POST = async (req) => {
             },{new:true})
             console.log(updateduserstatus)
             if(updateduserstatus){
-                return NextResponse.json({status:200,msg:"Vendor has beeen Registered"})
+                return NextResponse.json({status:200,msg:"Vendor has beeen Registered",data:vendoruser})
             }
         }
 
-        return NextResponse.json({status:400,msg:"Vendor not Added"})
+        return NextResponse.json({status:400,msg:"Vendor not Added",})
 
         
     } catch (error) {

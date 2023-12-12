@@ -17,8 +17,12 @@ export async function POST(request) {
         if (!user || user == null || user == undefined) {
             return NextResponse.json({status:400,error:"User doesnot exists"})
         }
+        
 
+        if(!user.isVerified) return NextResponse.json({status:401,error:'email is not verified. Verify the link sent to your email!!!'})
         const valid = await bcrypt.compare(password, user.password);
+          
+        console.log("valid is",valid)
         if (!valid) {
             return NextResponse.json({status:401,error:"Invalid credentials"})
         }

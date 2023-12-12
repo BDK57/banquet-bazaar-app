@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     isVerified: {
         type: Boolean, default: false
     },
+    favourites:[{
+        type:String,
+        unique:true,
+    }],
     usertype:{
         type:String,
         default:'user',

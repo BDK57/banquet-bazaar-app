@@ -17,3 +17,4 @@ export const GET = async () => {
     return  NextResponse({status:500,msg:error})
   }
 }
+
