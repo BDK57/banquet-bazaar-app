@@ -5,7 +5,7 @@ const HallSchema = new mongoose.Schema({
         type: String,
         unique:true
     },
-    Description: {
+    description: {
         type: String,
     },
     location:{
@@ -18,7 +18,7 @@ const HallSchema = new mongoose.Schema({
     capacity:{
         type:Number,
     },
-    Price:{
+    price:{
         type:Number,
     },
     coverimage:{
@@ -26,7 +26,8 @@ const HallSchema = new mongoose.Schema({
     },
     galleryImage:[{
         type:String,
-    }]
+    }],
+    
 
 })
 
