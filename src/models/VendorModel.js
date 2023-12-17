@@ -1,5 +1,9 @@
-import mongoose from 'mongoose'
-import { Schema } from 'mongoose'
+import mongoose from "mongoose";
+import { Schema } from "mongoose";
+import moment from "moment";
+
+
+
 const VendorSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -23,5 +27,5 @@ const VendorSchema = new mongoose.Schema({
 })
 
 
-const Vendor = mongoose.models.vendor || mongoose.model("vendor", VendorSchema)
-export default Vendor
+const Vendor = mongoose.models.vendor || mongoose.model("vendor", VendorSchema);
+export default Vendor;

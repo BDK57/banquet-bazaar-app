@@ -1,5 +1,7 @@
-import mongoose from 'mongoose'
-const crypto = require('crypto')
+import mongoose from "mongoose";
+import moment from "moment";
+const crypto = require("crypto");
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -35,16 +37,16 @@ const userSchema = new mongoose.Schema({
 
 
 userSchema.methods.getResetToken = function () {
-    const resetToken = crypto.randomBytes(20).toString("hex");
-    console.log("reset token",resetToken)
-    const verifyToken = crypto
-      .createHash("sha256")
-      .update(resetToken)
-      .digest("hex");
-  
-    const verifyTokenExpiry = Date.now() + 15 * 6 * 1000;
-  
-    return { resetToken, verifyToken, verifyTokenExpiry };
-  };
-const User = mongoose.models.users || mongoose.model("users", userSchema)
-export default User
+  const resetToken = crypto.randomBytes(20).toString("hex");
+  console.log("reset token", resetToken);
+  const verifyToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+  const verifyTokenExpiry = Date.now() + 15 * 60 * 1000;
+
+  return { resetToken, verifyToken, verifyTokenExpiry };
+};
+const User = mongoose.models.users || mongoose.model("users", userSchema);
+export default User;

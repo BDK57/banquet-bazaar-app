@@ -1,4 +1,3 @@
-
 import { NextResponse } from "next/server";
 import { connect } from "@/configDb/configDb";
 import User from "@/models/userModel";
